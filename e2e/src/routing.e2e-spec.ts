@@ -7,9 +7,15 @@ describe('Home Page Tests', () => {
         expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets App']);
     });
 
-    it('Click link', () => {
+    it('navigate to registration page', () => {
         browser.get('/');
-        expect(element.all(by.partialLinkText('Registration')).click());
+        element.all(by.partialLinkText('Registration')).click();
+        expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Register Players']);
     });
-    
+
+    it('navigate to brackets page', () => {
+        browser.get('/');
+        element.all(by.partialLinkText('Brackets')).click();
+        expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets']);
+    });
   });
