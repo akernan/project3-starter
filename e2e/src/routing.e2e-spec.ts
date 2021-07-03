@@ -1,21 +1,38 @@
 import { browser, element, by} from 'protractor'
 
-describe('Home Page Tests', () => {
+describe('Routing Tests', () => {
 
-    it('h2 with id=\'subpageTitle\'Equals \'Brackets App\'', () => {
+    it('Home page: h2 with id=\'subpageTitle\'Equals \'Brackets App\'', () => {
         browser.get('/');
         expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets App']);
     });
 
-    it('navigate to registration page', () => {
+    it('Navigate to registration page', () => {
         browser.get('/');
         element.all(by.partialLinkText('Registration')).click();
         expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Register Players']);
     });
 
-    it('navigate to brackets page', () => {
+    it('Navigate to brackets page', () => {
         browser.get('/');
         element.all(by.partialLinkText('Brackets')).click();
         expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets']);
     });
+
+    it('Navigate to Welcome From brackets page', () => {
+        browser.get('/brackets');
+        element.all(by.partialLinkText('Welcome')).click();
+        expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets App']);
+    });
+
+
+    describe('Tournament App Pipeline Tests', () => {
+      });
+
+      describe('Registration Error Tests', () => {
+    });
+
+    describe('Registration Error Tests', () => {
+    });
   });
+
