@@ -7,9 +7,9 @@ describe('Home Page Tests', () => {
         expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets App']);
     });
 
-    it('h2 with id=\'subpageTitle\'Equals \'Brackets App\'', () => {
+    it('Click link', () => {
         browser.get('/');
-        expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets App']);
+        expect(element.all(by.partialLinkText('Registration')).click());
     });
     
   });
