@@ -1,10 +1,15 @@
 import { browser, element, by} from 'protractor'
 
-describe('EmptyDescribe', () => {
+describe('Home Page Tests', () => {
 
-    it('EmptyIt', () => {
+    it('h2 with id=\'subpageTitle\'Equals \'Brackets App\'', () => {
         browser.get('/');
-        let subtitle = element(by.id('subpageTitle'));
-        expect(subtitle.toBe("Brackets App"));
+        expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets App']);
     });
+
+    it('h2 with id=\'subpageTitle\'Equals \'Brackets App\'', () => {
+        browser.get('/');
+        expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets App']);
+    });
+    
   });
