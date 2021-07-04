@@ -1,10 +1,12 @@
 import { browser, element, by} from 'protractor'
+// import util.ts;
 
 describe('Routing Tests', () => {
 
     it('Home page: h2 with id=\'subpageTitle\'Equals \'Brackets App\'', () => {
         browser.get('/');
         expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets App']);
+//    TOD: Update with naviagate to
     });
 
     it('Navigate to registration page', () => {
@@ -25,14 +27,5 @@ describe('Routing Tests', () => {
         expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets App']);
     });
 
-
-    describe('Tournament App Pipeline Tests', () => {
-      });
-
-      describe('Registration Error Tests', () => {
-    });
-
-    describe('Registration Error Tests', () => {
-    });
   });
 
