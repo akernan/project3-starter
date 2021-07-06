@@ -1,5 +1,5 @@
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import { browser, logging, element, by } from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -22,11 +22,13 @@ describe('Tournament App Pipeline Tests: AUTO GEN 4 PLAYERS', () => {
     element.all(by.partialLinkText('Registration')).click();
     element.all(by.id('autoGen2Players')).click();
     element.all(by.id('submit')).click();
-    //NOT SURE IF THERE CAN ONLY BE 1 EXPECT -  I DONT THINK SO>>>>
+    browser.get('/brackets');
     expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets']);
-    element.all(by.name('match_A_0')).click();
+    element.all(by.name('match_A_1')).click();
     element.all(by.name('completeRoundButton')).click();
-    expect(element.all(by.id('championExists')).getText()).toBeNonEmptyString();
+    expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets']);
+    browser.sleep(2000);
+    expect(element.all(by.id('championExists')).getText()).toContain("Winner:");
 
 });
 
