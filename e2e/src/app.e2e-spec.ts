@@ -55,7 +55,7 @@ it('AUTO GEN 8 PLAYERS & Register Them', () => {
 
 });
 
-it('AUTO GEN 2 PLAYERS, Player John WINS', () => {
+it('AUTO GEN 4 PLAYERS, Player John WINS', () => {
   browser.get('/');
   element.all(by.partialLinkText('Registration')).click();
   element(by.id('autoGen4Players')).click();
@@ -69,7 +69,7 @@ it('AUTO GEN 2 PLAYERS, Player John WINS', () => {
   expect(element(by.id('championExists')).getText()).toBe('Winner: John');
 });
 
-it('AUTO GEN 2 PLAYERS, Player Leia WINS', () => {
+it('AUTO GEN 8 PLAYERS, Player Leia WINS', () => {
   browser.get('/');
   element.all(by.partialLinkText('Registration')).click();
   element.all(by.id('autoGen8Players')).click();
@@ -147,5 +147,120 @@ describe('Registration Error Tests', () => {
 });
 
 describe('Bracket Error Tests', () => {
+
+  it('1 MATCH, NO WINNERS SELECTED, SHOW MESSAGE', () => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+    element.all(by.id('autoGen2Players')).click();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('championExists')).getText()).toBe('Winner: Zoe');
+});
+
+it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+    element(by.id('autoGen4Players')).click();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+
+  it('2 MATCH, ROUND 1, ONE WINNER SELECTED, SHOW MESSAGE', () => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+    element(by.id('autoGen4Players')).click();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+
+  it('2 MATCH, ROUND 2, NO WINNER SELECTED, SHOW MESSAGE', () => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+    element(by.id('autoGen4Players')).click();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('match2')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRoundButton')).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+
+
+  it('4 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+    element(by.id('autoGen8Players')).click();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+
+  it('4 MATCH, ROUND 1, ONE WINNER SELECTED, SHOW MESSAGE', () => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+    element(by.id('autoGen8Players')).click();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+
+  it('4 MATCH, ROUND 2, NO WINNER SELECTED, SHOW MESSAGE', () => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+    element(by.id('autoGen8Players')).click();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('match2')).all(by.tagName('input')).get(0).click();
+    element(by.id('match3')).all(by.tagName('input')).get(0).click();
+    element(by.id('match4')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRoundButton')).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+
+  it('4 MATCH, ROUND 2, ONE WINNER SELECTED, SHOW MESSAGE', () => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+    element(by.id('autoGen8Players')).click();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('match2')).all(by.tagName('input')).get(0).click();
+    element(by.id('match3')).all(by.tagName('input')).get(0).click();
+    element(by.id('match4')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRoundButton')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
+
+  it('4 MATCH, ROUND 3, NO WINNER SELECTED, SHOW MESSAGE', () => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+    element(by.id('autoGen8Players')).click();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('match2')).all(by.tagName('input')).get(0).click();
+    element(by.id('match3')).all(by.tagName('input')).get(0).click();
+    element(by.id('match4')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRoundButton')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('match2')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRoundButton')).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('message')).getText()).toBe('Please complete all matches');
+  });
 });
 
