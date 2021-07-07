@@ -15,37 +15,20 @@ describe('workspace-project App', () => {
 
 
   
-describe('Tournament App Pipeline Tests: AUTO GEN 4 PLAYERS', () => {
+describe('Tournament Pipeline Tests: AUTO GEN 4 PLAYERS', () => {
 
-  it('AUTO GEN 2 PLAYERS, Player A WINS', () => {
+  it('AUTO GEN 2 PLAYERS, Player Zoe WINS', () => {
     browser.get('/');
     element.all(by.partialLinkText('Registration')).click();
     element.all(by.id('autoGen2Players')).click();
-    element.all(by.id('submit')).click();
-    browser.get('/brackets');
-    expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets']);
-
-
-    element.all(by.id('match_A_0')).click();
-    // element(by.id('radiogrp1')).all(by.tagName('md-radio-button')).get(0).click();
-    // expect(element.all(by.id('match_A_0')).isSelected()).toBe(true);
-
-
-    element.all(by.name('completeRoundButton')).click();
-    expect(element.all(by.id('subpageTitle')).getText()).toEqual(['Brackets']);
- 
-    
-    var EC = ExpectedConditions;
-
-    var e = element(by.id('championExists'));
-    browser.driver.wait(EC.visibilityOf(e), 10000);
-    
-    expect(e.isPresent()).toBeTruthy();
+    element(by.id('submit')).click();
+    element.all(by.partialLinkText('Brackets')).click();
+    element(by.id('match1')).all(by.tagName('input')).get(0).click();
+    element(by.id('completeRoundButton')).click();
+    expect(element(by.id('championExists')).getText()).toBe('Winner: Zoe');
 
 
 
-
-    // expect(element.all(by.id('championExists')).getText()).toEqual(['Winner: Zoe']);
 });
 
   });
