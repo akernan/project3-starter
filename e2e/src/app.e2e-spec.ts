@@ -14,38 +14,36 @@ describe('workspace-project App', () => {
   });
 });
 
+function navToRegistration(){
+  beforeEach(() => {
+    browser.get('/');
+    element.all(by.partialLinkText('Registration')).click();
+  });
+}
   
 describe('Tournament Pipeline Tests: ', () => {
+  navToRegistration();
 
   it('AUTO GEN 2 PLAYERS & Register Them', () => {
-  browser.get('/');
-  element.all(by.partialLinkText('Registration')).click();
   element(by.id('autoGen2Players')).click();
   element(by.id('submit')).click();
   expect(element(by.id('message')).getText()).toBe('Zoe,Kaylee');
 });
 
 it('AUTO GEN 4 PLAYERS & Register Them', () => {
-  browser.get('/');
-  element.all(by.partialLinkText('Registration')).click();
+
   element(by.id('autoGen4Players')).click();
   element(by.id('submit')).click();
   expect(element(by.id('message')).getText()).toBe('John,Paul,George,Ringo');
 });
 
 it('AUTO GEN 8 PLAYERS & Register Them', () => {
-  browser.get('/');
-  element.all(by.partialLinkText('Registration')).click();
   element(by.id('autoGen8Players')).click();
   element(by.id('submit')).click();
   expect(element(by.id('message')).getText()).toBe('Leia,Luke,Lando,Han,Chewy,R2D2,C3P0,Vader');
 });
 
-
-
   it('AUTO GEN 2 PLAYERS, Player Zoe WINS', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element.all(by.id('autoGen2Players')).click();
     element(by.id('submit')).click();
     element.all(by.partialLinkText('Brackets')).click();
@@ -56,8 +54,6 @@ it('AUTO GEN 8 PLAYERS & Register Them', () => {
 });
 
 it('AUTO GEN 4 PLAYERS, Player John WINS', () => {
-  browser.get('/');
-  element.all(by.partialLinkText('Registration')).click();
   element(by.id('autoGen4Players')).click();
   element(by.id('submit')).click();
   element.all(by.partialLinkText('Brackets')).click();
@@ -70,8 +66,6 @@ it('AUTO GEN 4 PLAYERS, Player John WINS', () => {
 });
 
 it('AUTO GEN 8 PLAYERS, Player Leia WINS', () => {
-  browser.get('/');
-  element.all(by.partialLinkText('Registration')).click();
   element.all(by.id('autoGen8Players')).click();
   element(by.id('submit')).click();
   element.all(by.partialLinkText('Brackets')).click();
@@ -91,26 +85,21 @@ it('AUTO GEN 8 PLAYERS, Player Leia WINS', () => {
 
   });
 
-describe('Registration Error Tests', () => {
+describe('Registration Error Tests:', () => {
+  navToRegistration();
 
   it('NO PLAYERS, SHOWS MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('submit')).click();
     expect(element(by.id('message')).getText()).toBe('Should be 2, 4, or 8 contestants');
   });
 
   it('ONE PLAYER, SHOWS MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('contestant0')).sendKeys('Parzival');
     element(by.id('submit')).click();
     expect(element(by.id('message')).getText()).toBe('Should be 2, 4, or 8 contestants');
   });
 
   it('THREE PLAYERS, SHOWS MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('contestant0')).sendKeys('Parzival');
     element(by.id('contestant1')).sendKeys('Art3mis');
     element(by.id('contestant2')).sendKeys('TGAP_Ogg');
@@ -119,8 +108,6 @@ describe('Registration Error Tests', () => {
   });
 
   it('FIVE PLAYERS, SHOWS MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('contestant0')).sendKeys('Parzival');
     element(by.id('contestant1')).sendKeys('Art3mis');
     element(by.id('contestant2')).sendKeys('TGAP_Ogg');
@@ -130,9 +117,7 @@ describe('Registration Error Tests', () => {
     expect(element(by.id('message')).getText()).toBe('Should be 2, 4, or 8 contestants');
   });
 
-  it('Seven PLAYERS, SHOWS MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
+  it('SEVEN PLAYERS, SHOWS MESSAGE', () => {
     element(by.id('contestant0')).sendKeys('Parzival');
     element(by.id('contestant1')).sendKeys('Art3mis');
     element(by.id('contestant2')).sendKeys('TGAP_Ogg');
@@ -147,10 +132,9 @@ describe('Registration Error Tests', () => {
 });
 
 describe('Bracket Error Tests', () => {
+  navToRegistration();
 
 it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('autoGen4Players')).click();
     element(by.id('submit')).click();
     element.all(by.partialLinkText('Brackets')).click();
@@ -159,9 +143,7 @@ it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
   });
 
   it('2 MATCH, ROUND 1, ONE WINNER SELECTED, SHOW MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
-    element(by.id('autoGen4Players')).click();
+     element(by.id('autoGen4Players')).click();
     element(by.id('submit')).click();
     element.all(by.partialLinkText('Brackets')).click();
     element(by.id('match1')).all(by.tagName('input')).get(0).click();
@@ -170,8 +152,6 @@ it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
   });
 
   it('2 MATCH, ROUND 2, NO WINNER SELECTED, SHOW MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('autoGen4Players')).click();
     element(by.id('submit')).click();
     element.all(by.partialLinkText('Brackets')).click();
@@ -184,8 +164,6 @@ it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
 
 
   it('4 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('autoGen8Players')).click();
     element(by.id('submit')).click();
     element.all(by.partialLinkText('Brackets')).click();
@@ -194,8 +172,6 @@ it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
   });
 
   it('4 MATCH, ROUND 1, ONE WINNER SELECTED, SHOW MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('autoGen8Players')).click();
     element(by.id('submit')).click();
     element.all(by.partialLinkText('Brackets')).click();
@@ -205,8 +181,6 @@ it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
   });
 
   it('4 MATCH, ROUND 2, NO WINNER SELECTED, SHOW MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('autoGen8Players')).click();
     element(by.id('submit')).click();
     element.all(by.partialLinkText('Brackets')).click();
@@ -220,8 +194,6 @@ it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
   });
 
   it('4 MATCH, ROUND 2, ONE WINNER SELECTED, SHOW MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('autoGen8Players')).click();
     element(by.id('submit')).click();
     element.all(by.partialLinkText('Brackets')).click();
@@ -236,8 +208,6 @@ it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
   });
 
   it('4 MATCH, ROUND 3, NO WINNER SELECTED, SHOW MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
     element(by.id('autoGen8Players')).click();
     element(by.id('submit')).click();
     element.all(by.partialLinkText('Brackets')).click();
