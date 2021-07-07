@@ -148,16 +148,6 @@ describe('Registration Error Tests', () => {
 
 describe('Bracket Error Tests', () => {
 
-  it('1 MATCH, NO WINNERS SELECTED, SHOW MESSAGE', () => {
-    browser.get('/');
-    element.all(by.partialLinkText('Registration')).click();
-    element.all(by.id('autoGen2Players')).click();
-    element(by.id('submit')).click();
-    element.all(by.partialLinkText('Brackets')).click();
-    element(by.id('completeRoundButton')).click();
-    expect(element(by.id('championExists')).getText()).toBe('Winner: Zoe');
-});
-
 it('2 MATCH, ROUND 1, NO WINNERS SELECTED, SHOW MESSAGE', () => {
     browser.get('/');
     element.all(by.partialLinkText('Registration')).click();
